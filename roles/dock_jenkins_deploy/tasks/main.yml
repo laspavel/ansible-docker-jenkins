@@ -1,0 +1,21 @@
+---
+- name: Copy jenkins server_files
+  copy:
+    src: "jenkins/"
+    dest: "/home/{{ jenkins_user }}/jenkins"
+    mode: "0755"
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_user }}"
+
+- name: Copy docker-compose.yml
+  template:
+    src: 'docker-compose.yml.j2'
+    dest: '/home/{{ jenkins_user }}/jenkins/docker-compose.yml'
+    owner: "{{ jenkins_user }}"
+    group: "{{ jenkins_user }}"
+    mode: '0755'
+  ignore_errors: true
+
+- name: Start Jenkins container
+  shell: "cd /home/{{ jenkins_user }}/jenkins && docker-compose up -d"
+
