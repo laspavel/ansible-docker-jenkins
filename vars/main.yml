@@ -4,7 +4,7 @@ docker_users:
     - dockuser
 jenkins_user: dockuser
 vhosts:
-    - vname: sh-jenkins.atbmarket.com
+    - vname: jenkins.store-plus.atbmarket.com
       proxy_pass: http://127.0.0.1:8080
 proxy_env:
     http_proxy: ""

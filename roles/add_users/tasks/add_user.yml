@@ -1,10 +1,10 @@
 ---
 
-# Add user for Docker service (CentOS)
+# Add new user
 - name: Add new users
   user:
     name: "{{ item }}"
-    comment: Docker user account
+    comment: User account
     shell: /bin/bash
     system: no
     createhome: yes

@@ -18,4 +18,5 @@
 
 - name: Start Jenkins container
   shell: "cd /home/{{ jenkins_user }}/jenkins && docker-compose up -d"
+  ignore_errors: true
 
