@@ -17,6 +17,8 @@
   ignore_errors: true
 
 - name: Start Jenkins container
-  shell: "cd /home/{{ jenkins_user }}/jenkins && docker-compose up -d"
+  command: "{{ docker_compose_path }} -f /home/{{ jenkins_user }}/jenkins/docker-compose.yml up -d"
+  become: yes
+  become_user: "{{ jenkins_user }}"
   ignore_errors: true
 
