@@ -83,6 +83,17 @@
     mode: '0755'
   when: (ansible_service_mgr == 'systemd' and (proxy_env.http_proxy is defined or proxy_env.https_proxy is defined))
   
+- name: Add Docker client proxy
+  template:
+    src: 'config.conf.j2'
+    dest: '/home/{{ item }}/docker/config.json'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  with_items: "{{ docker_users }}"
+  register: docker__register_systemd_proxy_client_present
+  when: (ansible_service_mgr == 'systemd' and (proxy_env.http_proxy is defined or proxy_env.https_proxy is defined))
+  
 - name: Add Docker proxy
   template:
     src: 'http-proxy.conf.j2'
